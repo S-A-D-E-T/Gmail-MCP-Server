@@ -1,0 +1,33 @@
+[project]
+name = "gmail-mcp-serve"
+version = "0.1.0"
+description = "HTTP serve for Gmail MCP (legacy email_mcp API + Node Gmail stdio bridge)"
+requires-python = ">=3.13"
+dependencies = [
+    "sadet-observability",
+    "fastapi>=0.115.0",
+    "mcp>=1.27.0",
+    "uvicorn[standard]>=0.32.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[project.scripts]
+gmail-mcp-serve = "gmail_mcp_serve.http_serve:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.uv.sources]
+sadet-observability = { git = "https://github.com/S-A-D-E-T/observability.git", branch = "main" }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["gmail_mcp_serve"]

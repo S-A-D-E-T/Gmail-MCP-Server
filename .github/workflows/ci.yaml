@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  ci:
+    uses: S-A-D-E-T/workflows/.github/workflows/python-service.yml@main
+    secrets: inherit
